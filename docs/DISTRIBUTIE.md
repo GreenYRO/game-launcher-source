@@ -416,7 +416,8 @@ cont și fără cheie. GitHub vede adresa de internet a conexiunii, ca Steam, ș
 2. eticheta: `v` plus versiunea exactă din `shared/version.py` (de exemplu `v1.2.0`);
 3. un titlu, două rânduri despre ce s-a schimbat, `dist\GameLauncher-Setup.exe` atașat. **Din 1.2.6
    (cererea mea, 18 octombrie), notele sunt în română și în engleză**: întâi româna, apoi același text
-   în engleză;
+   în engleză; din 1.2.10 fiecare parte se încheie cu rândul despre codul sursă public
+   (`https://github.com/GreenYRO/game-launcher-source`), ca pagina installerelor să trimită și la cod;
 4. **Publish release**. Un *draft* nu îl vede nimeni, deci îl poți pregăti din timp.
 
 Același lucru din linia de comandă:
