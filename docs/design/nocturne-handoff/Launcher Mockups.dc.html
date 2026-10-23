@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/nocturne-13e1417d-01b7-44ad-af56-607bc53f5468/styles.css">
+<script src="_ds/nocturne-13e1417d-01b7-44ad-af56-607bc53f5468/_ds_bundle.js"></script>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<style>
+html,body{margin:0;background:#0e0f18}
+a{color:var(--color-accent)}a:hover{color:var(--color-accent-400)}
+.dv-turn{padding:40px 44px 32px;scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 8px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:var(--color-accent);color:var(--color-bg);border-radius:4px;text-decoration:none}
+.dv-tname{font:500 14px/1.2 var(--font-body);color:var(--color-text)}
+.dv-opts{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:var(--color-neutral-800);color:var(--color-neutral-100);border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 12px/1.3 var(--font-body);color:var(--color-neutral-400)}
+.dv-card{background:var(--color-bg);border-radius:10px;box-shadow:var(--shadow-md);overflow:hidden}
+.dv-opt:target .dv-oid{background:var(--color-accent);color:var(--color-bg)}
+.dv-next{margin:28px 0 0;font:12px/1.5 var(--font-body);color:var(--color-neutral-500)}
+</style>
+</helmet>
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Game Launcher in Nocturne — three library directions, then the game page, Stats and Storage</span></div>
+<p style="margin:0 0 28px;max-width:860px;font-size:13px;line-height:1.6;color:var(--color-neutral-400);text-wrap:pretty">Built from the Licenta source: the same pages (Library, a game's page, Stats, Storage), the same words (Continue playing, the five chips, Sort by, Demos &amp; tools, the five pills, Your note, Recent sessions) and your real cover art from <code>data/cache/steam_art</code>. Colours, type and buttons move to Nocturne: one blurple accent used as lines and glows, Play as an outlined action instead of the green pill, Inter in place of Segoe. Frames are 1280×800, the window's default size. Playtimes and stats are illustrative.</p>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Library — today's layout, restyled. Top bar, Continue playing, chips, wall of covers</div>
+<div class="dv-card" style="width:1280px;height:800px;position:relative;display:flex;flex-direction:column">
+<sc-if value="{{ showBackdrop }}" hint-placeholder-val="{{ true }}">
+<div style="position:absolute;inset:0;overflow:hidden;pointer-events:none">
+<img src="art/2124490_hero.jpg" alt="" style="position:absolute;inset:-60px;width:calc(100% + 120px);height:70%;object-fit:cover;filter:blur(60px) saturate(.7);opacity:.35">
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,var(--color-bg) 62%)"></div>
+</div>
+</sc-if>
+<div style="position:relative;display:flex;align-items:center;gap:22px;height:64px;padding:0 28px;flex:none">
+<i class="ph-fill ph-game-controller" style="font-size:24px;color:var(--color-accent);margin-right:8px"></i>
+<div style="display:flex;gap:24px;align-self:stretch">
+<span style="display:flex;align-items:center;font-size:15px;font-weight:500;color:var(--color-text);border-bottom:2px solid var(--color-accent)">Library</span>
+<span style="display:flex;align-items:center;font-size:15px;color:var(--color-neutral-500);border-bottom:2px solid transparent">Stats</span>
+<span style="display:flex;align-items:center;font-size:15px;color:var(--color-neutral-500);border-bottom:2px solid transparent">Storage</span>
+</div>
+<div style="flex:1"></div>
+<div style="display:flex;align-items:center;gap:8px;width:320px;height:36px;padding:0 12px;border:1px solid var(--color-divider);border-radius:var(--radius-md);background:color-mix(in srgb,var(--color-surface) 70%,transparent);color:var(--color-neutral-500);font-size:13px"><i class="ph ph-magnifying-glass" style="font-size:15px"></i>Search 21 games<span style="margin-left:auto;font-size:11px;color:var(--color-neutral-600)">Ctrl F</span></div>
+<div style="display:flex;gap:6px">
+<button class="btn btn-secondary btn-icon" title="Play something"><i class="ph ph-shuffle" style="font-size:17px"></i></button>
+<button class="btn btn-secondary btn-icon" title="Rescan"><i class="ph ph-arrows-clockwise" style="font-size:17px"></i></button>
+<button class="btn btn-secondary btn-icon" title="Settings"><i class="ph ph-gear-six" style="font-size:17px"></i></button>
+</div>
+</div>
+<div style="position:relative;flex:1;overflow:hidden;padding:8px 28px 0">
+<div style="position:relative;height:250px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)">
+<img src="art/2124490_hero.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%">
+<div style="position:absolute;inset:0;background:linear-gradient(90deg,var(--color-bg) 0%,color-mix(in srgb,var(--color-bg) 70%,transparent) 42%,transparent 85%)"></div>
+<div style="position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:34px 36px;max-width:620px">
+<div class="card-kicker" style="letter-spacing:.18em">Continue playing</div>
+<div style="font-size:40px;font-weight:500;letter-spacing:-.02em;line-height:1.1">Silent Hill 2</div>
+<div style="font-size:14px;color:var(--color-neutral-300)">41 h 12 m played · last played yesterday</div>
+<div style="font-size:13px;color:var(--color-neutral-400);font-style:italic">Brookhaven, 3rd floor — the box puzzle is next.</div>
+<div style="display:flex;gap:10px;margin-top:12px">
+<button class="btn btn-primary" style="height:42px;padding:0 24px;font-size:15px;background:color-mix(in srgb,var(--color-bg) 60%,transparent)"><i class="ph-fill ph-play" style="font-size:15px"></i>Play</button>
+<button class="btn btn-secondary" style="height:42px;padding:0 20px;font-size:15px;background:color-mix(in srgb,var(--color-bg) 50%,transparent)">Details</button>
+</div>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:8px;margin:18px 0 14px">
+<sc-for list="{{ chips }}" as="c" hint-placeholder-count="5">
+<span style="display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 13px;border-radius:15px;font-size:12.5px;border:1px solid {{ c.border }};color:{{ c.color }}">{{ c.label }}<span style="color:var(--color-neutral-500);font-size:11.5px">{{ c.count }}</span></span>
+</sc-for>
+<div style="flex:1"></div>
+<span style="display:inline-flex;align-items:center;height:30px;padding:0 13px;border-radius:15px;font-size:12.5px;border:1px solid var(--color-divider);color:var(--color-neutral-400)">Demos &amp; tools</span>
+<span style="display:inline-flex;align-items:center;height:30px;padding:0 13px;border-radius:15px;font-size:12.5px;border:1px solid var(--color-divider);color:var(--color-neutral-400)">Hidden</span>
+<span style="margin-left:14px;font-size:12.5px;color:var(--color-neutral-500)">Sort by</span>
+<span style="display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px;border-radius:15px;font-size:12.5px;border:1px solid var(--color-divider)">Last played<i class="ph ph-caret-down" style="font-size:12px;color:var(--color-neutral-500)"></i></span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:22px 18px">
+<sc-for list="{{ games }}" as="g" hint-placeholder-count="16">
+<div style="display:flex;flex-direction:column;gap:7px;min-width:0">
+<div style="position:relative;aspect-ratio:2/3;border-radius:var(--radius-md);overflow:hidden;background:var(--color-surface);box-shadow:{{ g.ring }}">
+<img src="{{ g.cover }}" alt="" style="width:100%;height:100%;object-fit:cover">
+<sc-if value="{{ g.isNew }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:7px;left:7px;font-size:9.5px;font-weight:600;letter-spacing:.08em;padding:2px 7px;border-radius:4px;background:var(--color-accent-800);color:var(--color-accent-100);box-shadow:0 0 0 1px var(--color-accent-600)">NEW</span></sc-if>
+<sc-if value="{{ g.fav }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:7px;right:7px;width:24px;height:24px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--color-bg) 75%,transparent)"><i class="ph-fill ph-star" style="font-size:12px;color:var(--color-accent-300)"></i></span></sc-if>
+</div>
+<div style="font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ g.name }}</div>
+<div style="font-size:11.5px;color:var(--color-neutral-500);margin-top:-5px">{{ g.sub }}</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Library — a side rail. Filters and stores become navigation; three recent games as wide cards</div>
+<div class="dv-card" style="width:1280px;height:800px;display:grid;grid-template-columns:232px minmax(0,1fr)">
+<div style="display:flex;flex-direction:column;padding:22px 14px 16px;background:linear-gradient(180deg,color-mix(in srgb,var(--color-surface) 60%,transparent),transparent);box-shadow:inset -1px 0 0 color-mix(in srgb,var(--color-text) 7%,transparent)">
+<div style="display:flex;align-items:center;gap:10px;padding:0 10px 22px"><i class="ph-fill ph-game-controller" style="font-size:22px;color:var(--color-accent)"></i><span style="font-size:15px;font-weight:500">Game Launcher</span></div>
+<div style="display:flex;flex-direction:column;gap:2px">
+<div style="display:flex;align-items:center;gap:11px;height:36px;padding:0 10px;border-radius:var(--radius-md);background:var(--color-accent-900);color:var(--color-accent-200);font-size:13.5px;box-shadow:inset 2px 0 0 var(--color-accent)"><i class="ph ph-squares-four" style="font-size:17px"></i>Library</div>
+<div style="display:flex;align-items:center;gap:11px;height:36px;padding:0 10px;border-radius:var(--radius-md);color:var(--color-neutral-300);font-size:13.5px"><i class="ph ph-chart-bar" style="font-size:17px"></i>Stats</div>
+<div style="display:flex;align-items:center;gap:11px;height:36px;padding:0 10px;border-radius:var(--radius-md);color:var(--color-neutral-300);font-size:13.5px"><i class="ph ph-hard-drives" style="font-size:17px"></i>Storage</div>
+</div>
+<div style="height:1px;margin:18px 4px;background:linear-gradient(90deg,transparent,var(--color-divider) 48px,var(--color-divider) calc(100% - 48px),transparent)"></div>
+<div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-500);padding:0 10px 8px">Show</div>
+<div style="display:flex;flex-direction:column;gap:1px">
+<sc-for list="{{ railFilters }}" as="f" hint-placeholder-count="5">
+<div style="display:flex;align-items:center;gap:11px;height:32px;padding:0 10px;border-radius:var(--radius-md);font-size:13px;color:{{ f.color }};background:{{ f.bg }}"><i class="ph {{ f.icon }}" style="font-size:15px"></i>{{ f.label }}<span style="margin-left:auto;font-size:11.5px;color:var(--color-neutral-500)">{{ f.count }}</span></div>
+</sc-for>
+</div>
+<div style="height:1px;margin:18px 4px;background:linear-gradient(90deg,transparent,var(--color-divider) 48px,var(--color-divider) calc(100% - 48px),transparent)"></div>
+<div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-500);padding:0 10px 8px">Found in</div>
+<div style="display:flex;flex-direction:column;gap:1px">
+<sc-for list="{{ sources }}" as="s" hint-placeholder-count="4">
+<div style="display:flex;align-items:center;gap:11px;height:30px;padding:0 10px;font-size:13px;color:var(--color-neutral-300)"><span style="width:6px;height:6px;border-radius:3px;background:var(--color-neutral-600)"></span>{{ s.label }}<span style="margin-left:auto;font-size:11.5px;color:var(--color-neutral-500)">{{ s.count }}</span></div>
+</sc-for>
+</div>
+<div style="flex:1"></div>
+<div style="display:flex;align-items:center;gap:4px;padding:0 4px">
+<button class="btn btn-ghost" style="font-size:12.5px;padding:6px 8px"><i class="ph ph-shuffle" style="font-size:15px"></i>Play something</button>
+<div style="flex:1"></div>
+<button class="btn btn-icon" style="width:32px;height:32px;color:var(--color-neutral-400)"><i class="ph ph-arrows-clockwise" style="font-size:16px"></i></button>
+<button class="btn btn-icon" style="width:32px;height:32px;color:var(--color-neutral-400)"><i class="ph ph-gear-six" style="font-size:16px"></i></button>
+</div>
+</div>
+<div style="padding:24px 32px 0;overflow:hidden;display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;align-items:center;gap:16px">
+<div style="font-size:26px;font-weight:500;letter-spacing:-.02em">Library</div>
+<div style="font-size:13px;color:var(--color-neutral-500);margin-top:4px">21 games · 5 stores and folders</div>
+<div style="flex:1"></div>
+<div style="display:flex;align-items:center;gap:8px;width:280px;height:34px;padding:0 12px;border:1px solid var(--color-divider);border-radius:var(--radius-md);color:var(--color-neutral-500);font-size:13px"><i class="ph ph-magnifying-glass" style="font-size:15px"></i>Search games</div>
+<div class="seg"><label class="seg-opt" style="padding:7px 10px"><input type="radio" name="v1b" defaultChecked="{{ true }}"><i class="ph ph-squares-four" style="font-size:15px"></i></label><label class="seg-opt" style="padding:7px 10px"><input type="radio" name="v1b"><i class="ph ph-list" style="font-size:15px"></i></label></div>
+</div>
+<div>
+<div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-500);margin-bottom:10px">Jump back in</div>
+<div style="display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:14px">
+<sc-for list="{{ recent }}" as="r" hint-placeholder-count="3">
+<div style="position:relative;height:178px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:{{ r.ring }}">
+<img src="{{ r.hero }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+<div style="position:absolute;inset:0;background:linear-gradient(0deg,color-mix(in srgb,var(--color-bg) 92%,transparent) 8%,transparent 70%)"></div>
+<div style="position:absolute;left:16px;right:16px;bottom:14px;display:flex;align-items:flex-end;gap:10px">
+<div style="flex:1;min-width:0"><div style="font-size:16px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.name }}</div><div style="font-size:12px;color:var(--color-neutral-300)">{{ r.meta }}</div></div>
+<button class="btn btn-primary btn-icon" style="width:34px;height:34px;border-radius:17px;background:color-mix(in srgb,var(--color-bg) 60%,transparent)"><i class="ph-fill ph-play" style="font-size:13px"></i></button>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+<div>
+<div style="display:flex;align-items:center;margin-bottom:12px"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-500)">All games</div><div style="flex:1"></div><span style="font-size:12px;color:var(--color-neutral-400)">Sort by <span style="color:var(--color-text)">Name</span> <i class="ph ph-caret-down" style="font-size:11px"></i></span></div>
+<div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:18px 16px">
+<sc-for list="{{ gamesAz }}" as="g" hint-placeholder-count="14">
+<div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+<div style="position:relative;aspect-ratio:2/3;border-radius:var(--radius-md);overflow:hidden;background:var(--color-surface)"><img src="{{ g.cover }}" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+<div style="font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ g.name }}</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Library — Spotlight. One game fills the window; a strip of covers underneath. Doubles as TV mode</div>
+<div class="dv-card" style="width:1280px;height:800px;position:relative;display:flex;flex-direction:column">
+<div class="lighten" style="position:absolute;inset:0 0 auto 0;height:640px">
+<img src="{{ spot.hero }}" alt="" style="width:100%;height:100%;object-fit:cover;-webkit-mask-image:linear-gradient(180deg,#000 40%,transparent 100%),linear-gradient(90deg,transparent,#000 55%);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,#000 40%,transparent 100%);opacity:.9">
+</div>
+<div style="position:absolute;inset:0;background:linear-gradient(90deg,var(--color-bg) 18%,color-mix(in srgb,var(--color-bg) 40%,transparent) 55%,transparent 80%)"></div>
+<div style="position:relative;display:flex;align-items:center;gap:28px;padding:24px 40px 0">
+<i class="ph-fill ph-game-controller" style="font-size:22px;color:var(--color-accent)"></i>
+<span style="font-size:14px;font-weight:500">Library</span><span style="font-size:14px;color:var(--color-neutral-500)">Stats</span><span style="font-size:14px;color:var(--color-neutral-500)">Storage</span>
+<div style="flex:1"></div>
+<span style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--color-neutral-400)"><i class="ph ph-battery-high" style="font-size:18px"></i>DualSense</span>
+<span style="font-size:14px;color:var(--color-neutral-300)">21:14</span>
+</div>
+<div style="position:relative;flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 40px 34px;max-width:640px;gap:12px">
+<div style="display:flex;gap:8px"><span class="tag tag-accent">{{ spot.status }}</span><span class="tag tag-neutral">{{ spot.store }}</span></div>
+<div style="font-size:54px;font-weight:500;letter-spacing:-.025em;line-height:1.02;text-wrap:balance">{{ spot.name }}</div>
+<div style="display:flex;gap:18px;font-size:13.5px;color:var(--color-neutral-300)"><span style="display:flex;align-items:center;gap:6px"><i class="ph ph-clock" style="font-size:15px;color:var(--color-neutral-500)"></i>{{ spot.played }}</span><span style="display:flex;align-items:center;gap:6px"><i class="ph ph-calendar-blank" style="font-size:15px;color:var(--color-neutral-500)"></i>{{ spot.last }}</span><span style="display:flex;align-items:center;gap:6px"><i class="ph ph-hard-drive" style="font-size:15px;color:var(--color-neutral-500)"></i>{{ spot.size }}</span></div>
+<div style="display:flex;gap:10px;margin-top:8px">
+<button class="btn btn-primary" style="height:48px;padding:0 30px;font-size:16px;box-shadow:0 0 0 4px color-mix(in srgb,var(--color-accent) 22%,transparent),0 0 32px color-mix(in srgb,var(--color-accent) 35%,transparent);background:color-mix(in srgb,var(--color-bg) 55%,transparent)"><i class="ph-fill ph-play" style="font-size:16px"></i>Play</button>
+<button class="btn btn-secondary" style="height:48px;padding:0 20px;font-size:15px;background:color-mix(in srgb,var(--color-bg) 45%,transparent)">Game page</button>
+</div>
+</div>
+<div style="position:relative;padding:0 0 0 40px;display:flex;gap:14px;align-items:flex-end;overflow:hidden;height:196px">
+<sc-for list="{{ strip }}" as="g" hint-placeholder-count="10">
+<div style="flex:none;width:{{ g.w }};aspect-ratio:2/3;border-radius:var(--radius-md);overflow:hidden;box-shadow:{{ g.ring }};opacity:{{ g.op }}"><img src="{{ g.cover }}" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+</sc-for>
+</div>
+<div style="position:relative;display:flex;align-items:center;gap:24px;height:52px;padding:0 40px;margin-top:14px;background:color-mix(in srgb,var(--color-bg) 85%,transparent);box-shadow:inset 0 1px 0 color-mix(in srgb,var(--color-text) 6%,transparent);font-size:13px;color:var(--color-neutral-300)">
+<sc-for list="{{ hints }}" as="h" hint-placeholder-count="5">
+<span style="display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;border-radius:11px;display:grid;place-items:center;font-size:11px;font-weight:600;background:var(--color-neutral-900);box-shadow:inset 0 0 0 1px var(--color-neutral-700);color:var(--color-neutral-200)">{{ h.k }}</span>{{ h.label }}</span>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1d">
+<div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>A game's page — art edge to edge, five pills, one Play row, cards below</div>
+<div class="dv-card" style="width:1280px;height:800px;position:relative;overflow:hidden">
+<div style="position:absolute;inset:0 0 auto 0;height:430px">
+<img src="art/2124490_hero.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 25%;-webkit-mask-image:linear-gradient(180deg,#000 35%,transparent 100%);mask-image:linear-gradient(180deg,#000 35%,transparent 100%)">
+<div style="position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--color-bg) 90%,transparent),color-mix(in srgb,var(--color-bg) 25%,transparent) 50%,transparent)"></div>
+</div>
+<div style="position:absolute;top:18px;left:24px;right:24px;display:flex;gap:8px;z-index:2">
+<button class="btn btn-secondary" style="height:36px;background:color-mix(in srgb,var(--color-bg) 65%,transparent)"><i class="ph ph-arrow-left" style="font-size:15px"></i>Library</button>
+<div style="flex:1"></div>
+<button class="btn btn-secondary" style="height:36px;background:color-mix(in srgb,var(--color-bg) 65%,transparent)"><i class="ph ph-caret-left" style="font-size:14px"></i>Previous game</button>
+<button class="btn btn-secondary" style="height:36px;background:color-mix(in srgb,var(--color-bg) 65%,transparent)">Next game<i class="ph ph-caret-right" style="font-size:14px"></i></button>
+</div>
+<div style="position:relative;padding:150px 48px 0;display:flex;gap:30px;align-items:flex-end">
+<div style="flex:none;width:170px;aspect-ratio:2/3;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg)"><img src="art/2124490.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+<div style="display:flex;flex-direction:column;gap:14px;padding-bottom:4px;min-width:0">
+<div style="font-size:46px;font-weight:500;letter-spacing:-.025em;line-height:1">Silent Hill 2</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ pills }}" as="p" hint-placeholder-count="5">
+<span style="display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 12px;border-radius:15px;font-size:12.5px;background:color-mix(in srgb,var(--color-bg) 55%,transparent);box-shadow:inset 0 0 0 1px var(--color-divider);color:{{ p.color }}"><i class="ph {{ p.icon }}" style="font-size:14px;color:var(--color-neutral-400)"></i>{{ p.label }}</span>
+</sc-for>
+</div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:4px">
+<button class="btn btn-primary" style="height:48px;width:170px;font-size:16px;background:color-mix(in srgb,var(--color-bg) 55%,transparent)"><i class="ph-fill ph-play" style="font-size:16px"></i>Play</button>
+<button class="btn btn-secondary btn-icon" style="width:44px;height:44px;border-radius:22px"><i class="ph-fill ph-star" style="font-size:17px;color:var(--color-accent-300)"></i></button>
+<button class="btn btn-secondary btn-icon" style="width:44px;height:44px;border-radius:22px"><i class="ph ph-folder-open" style="font-size:17px"></i></button>
+<button class="btn btn-secondary btn-icon" style="width:44px;height:44px;border-radius:22px"><i class="ph ph-dots-three" style="font-size:19px"></i></button>
+<div class="seg" style="margin-left:8px;height:40px"><label class="seg-opt"><input type="radio" name="st1d" defaultChecked="{{ true }}">Playing</label><label class="seg-opt"><input type="radio" name="st1d">Finished</label><label class="seg-opt"><input type="radio" name="st1d">Dropped</label></div>
+</div>
+</div>
+</div>
+<div style="position:relative;display:grid;grid-template-columns:3fr 2fr;gap:18px;padding:30px 48px 0">
+<div style="display:flex;flex-direction:column;gap:18px">
+<div class="card elev-sm" style="padding:18px 20px;gap:8px">
+<div style="display:flex;align-items:center"><div class="card-title" style="font-size:15px">Your note</div><div style="flex:1"></div><button class="btn btn-ghost" style="font-size:12.5px">Edit note…</button></div>
+<div style="font-size:13.5px;line-height:1.55;color:var(--color-neutral-200);padding-left:12px;box-shadow:inset 2px 0 0 var(--color-accent-700)">Brookhaven, 3rd floor — the box puzzle is next. FSR off, DLSS Quality looked best.</div>
+</div>
+<div class="card elev-sm" style="padding:18px 20px;gap:8px">
+<div class="card-title" style="font-size:15px">About</div>
+<div style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-300);text-wrap:pretty">Having received a letter from his deceased wife, James heads to where they shared so many memories, in the hope of seeing her one more time: Silent Hill.</div>
+<div style="display:flex;gap:6px;margin-top:4px"><span class="tag tag-neutral">Adventure</span><span class="tag tag-neutral">Horror</span></div>
+</div>
+</div>
+<div class="card elev-sm" style="padding:18px 20px;gap:4px">
+<div style="display:flex;align-items:baseline"><div class="card-title" style="font-size:15px">Recent sessions</div><div style="flex:1"></div><span style="font-size:12px;color:var(--color-neutral-500)">5 h 40 m this week</span></div>
+<div style="display:flex;flex-direction:column;margin-top:8px">
+<sc-for list="{{ sessions }}" as="s" hint-placeholder-count="6">
+<div style="display:grid;grid-template-columns:86px minmax(0,1fr) 62px;align-items:center;gap:14px;height:32px;font-size:12.5px">
+<span style="color:var(--color-neutral-400)">{{ s.day }}</span>
+<div style="height:8px;border-radius:4px;background:var(--color-neutral-900)"><div style="height:100%;width:{{ s.w }};border-radius:4px;background:linear-gradient(90deg,var(--color-accent-700),var(--color-accent))"></div></div>
+<span style="text-align:right;color:var(--color-neutral-200)">{{ s.len }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1e">
+<div class="dv-olabel"><a class="dv-oid" href="#1e">1e</a>Stats — four figures, a year of months, two lists, and what it cannot see</div>
+<div class="dv-card" style="width:1280px;height:800px;display:flex;flex-direction:column">
+<div style="display:flex;align-items:center;gap:22px;height:64px;padding:0 28px;flex:none">
+<i class="ph-fill ph-game-controller" style="font-size:24px;color:var(--color-accent);margin-right:8px"></i>
+<div style="display:flex;gap:24px;align-self:stretch">
+<span style="display:flex;align-items:center;font-size:15px;color:var(--color-neutral-500);border-bottom:2px solid transparent">Library</span>
+<span style="display:flex;align-items:center;font-size:15px;font-weight:500;border-bottom:2px solid var(--color-accent)">Stats</span>
+<span style="display:flex;align-items:center;font-size:15px;color:var(--color-neutral-500);border-bottom:2px solid transparent">Storage</span>
+</div>
+</div>
+<div style="padding:18px 64px 0;display:flex;flex-direction:column;gap:22px;max-width:1150px">
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px">
+<sc-for list="{{ figures }}" as="f" hint-placeholder-count="4">
+<div class="card elev-sm" style="padding:18px 20px;gap:6px">
+<i class="ph {{ f.icon }}" style="font-size:18px;color:var(--color-accent)"></i>
+<div style="font-size:32px;font-weight:500;letter-spacing:-.02em;line-height:1.1;margin-top:4px">{{ f.value }}</div>
+<div style="font-size:12.5px;color:var(--color-neutral-400)">{{ f.label }}</div>
+</div>
+</sc-for>
+</div>
+<div class="card elev-sm" style="padding:20px 24px 16px;gap:14px">
+<div style="display:flex;align-items:baseline"><div class="card-title" style="font-size:15px">A year of play</div><div style="flex:1"></div><span style="font-size:12px;color:var(--color-neutral-500)">Hours per month</span></div>
+<div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;align-items:end;height:170px">
+<sc-for list="{{ months }}" as="m" hint-placeholder-count="12">
+<div style="display:flex;flex-direction:column;align-items:stretch;gap:8px;height:100%;justify-content:flex-end">
+<span style="font-size:11px;text-align:center;color:var(--color-neutral-400)">{{ m.v }}</span>
+<div style="height:{{ m.h }};border-radius:3px 3px 0 0;background:{{ m.fill }}"></div>
+</div>
+</sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;margin-top:-6px;padding-top:8px;box-shadow:inset 0 1px 0 var(--color-neutral-800)">
+<sc-for list="{{ months }}" as="m" hint-placeholder-count="12"><span style="font-size:11px;text-align:center;color:var(--color-neutral-500)">{{ m.label }}</span></sc-for>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+<div class="card elev-sm" style="padding:18px 22px;gap:4px">
+<div class="card-title" style="font-size:15px;margin-bottom:6px">Most played</div>
+<sc-for list="{{ topGames }}" as="t" hint-placeholder-count="5">
+<div style="display:flex;align-items:center;gap:12px;height:30px;font-size:13px"><img src="{{ t.cover }}" alt="" style="width:18px;height:27px;object-fit:cover;border-radius:3px"><span style="flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ t.name }}</span><span style="color:var(--color-neutral-300)">{{ t.time }}</span></div>
+</sc-for>
+</div>
+<div class="card elev-sm" style="padding:18px 22px;gap:8px">
+<div class="card-title" style="font-size:15px">What this page cannot see</div>
+<div style="font-size:13px;line-height:1.6;color:var(--color-neutral-300);text-wrap:pretty">Steam, Epic and Xbox start their own games, so their time is not counted here — 6 games in this library. Months before session history began (Oct 2025) are drawn dimmer than months that were simply quiet.</div>
+<div style="display:flex;gap:16px;margin-top:6px;font-size:12px;color:var(--color-neutral-400)"><span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:2px;background:var(--color-accent)"></span>Recorded</span><span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:2px;background:var(--color-neutral-800)"></span>Not recorded yet</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1f">
+<div class="dv-olabel"><a class="dv-oid" href="#1f">1f</a>Storage — by drive, ranked bars, and what you could reclaim</div>
+<div class="dv-card" style="width:1280px;height:800px;display:flex;flex-direction:column">
+<div style="display:flex;align-items:center;gap:22px;height:64px;padding:0 28px;flex:none">
+<i class="ph-fill ph-game-controller" style="font-size:24px;color:var(--color-accent);margin-right:8px"></i>
+<div style="display:flex;gap:24px;align-self:stretch">
+<span style="display:flex;align-items:center;font-size:15px;color:var(--color-neutral-500);border-bottom:2px solid transparent">Library</span>
+<span style="display:flex;align-items:center;font-size:15px;color:var(--color-neutral-500);border-bottom:2px solid transparent">Stats</span>
+<span style="display:flex;align-items:center;font-size:15px;font-weight:500;border-bottom:2px solid var(--color-accent)">Storage</span>
+</div>
+</div>
+<div style="padding:18px 64px 0;display:flex;flex-direction:column;gap:18px;max-width:1150px">
+<div style="display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:var(--radius-lg);background:var(--color-accent-900);box-shadow:inset 0 0 0 1px var(--color-accent-800)">
+<i class="ph ph-broom" style="font-size:22px;color:var(--color-accent-300)"></i>
+<div style="flex:1"><div style="font-size:14px;font-weight:500;color:var(--color-accent-100)">4 games not played in 90 days take 212 GB</div><div style="font-size:12.5px;color:var(--color-accent-300)">CULTIC, Left 4 Dead 2, Worship and SnowRunner. Their saves are copied before anything is removed.</div></div>
+<button class="btn btn-primary" style="height:34px">Review them</button>
+</div>
+<div class="card elev-sm" style="padding:18px 22px;gap:10px">
+<div style="display:flex;align-items:baseline;gap:12px"><div style="font-size:18px;font-weight:500">C:\games</div><span style="font-size:12.5px;color:var(--color-neutral-400)">1.86 TB drive · 412 GB free</span><div style="flex:1"></div><div class="seg"><label class="seg-opt" style="padding:5px 10px;font-size:12px"><input type="radio" name="so1f" defaultChecked="{{ true }}">Size</label><label class="seg-opt" style="padding:5px 10px;font-size:12px"><input type="radio" name="so1f">Last played</label><label class="seg-opt" style="padding:5px 10px;font-size:12px"><input type="radio" name="so1f">Name</label></div></div>
+<div style="display:flex;height:14px;border-radius:7px;overflow:hidden;gap:2px">
+<div style="width:46%;background:linear-gradient(90deg,var(--color-accent-600),var(--color-accent))"></div>
+<div style="width:32%;background:var(--color-neutral-700)"></div>
+<div style="flex:1;background:var(--color-neutral-900)"></div>
+</div>
+<div style="display:flex;gap:18px;font-size:12px;color:var(--color-neutral-400)"><span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--color-accent)"></span>Games 856 GB</span><span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--color-neutral-700)"></span>Everything else 594 GB</span><span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--color-neutral-900);box-shadow:inset 0 0 0 1px var(--color-neutral-700)"></span>Free 412 GB</span></div>
+<div style="display:flex;flex-direction:column;gap:5px;margin-top:8px">
+<sc-for list="{{ storage }}" as="r" hint-placeholder-count="9">
+<div style="position:relative;display:grid;grid-template-columns:minmax(0,1fr) 110px 90px;align-items:center;height:38px;padding:0 14px;border-radius:var(--radius-md);background:color-mix(in srgb,var(--color-text) 3%,transparent);overflow:hidden">
+<div style="position:absolute;left:0;top:0;bottom:0;width:{{ r.w }};background:{{ r.fill }}"></div>
+<span style="position:relative;display:flex;align-items:center;gap:10px;font-size:13px;white-space:nowrap;overflow:hidden">{{ r.name }}<sc-if value="{{ r.stale }}" hint-placeholder-val="{{ false }}"><span class="tag tag-outline" style="padding:1px 7px;font-size:10px">not played in 90 days</span></sc-if></span>
+<span style="position:relative;font-size:12.5px;color:var(--color-neutral-400);text-align:right">{{ r.last }}</span>
+<span style="position:relative;font-size:13px;text-align:right">{{ r.size }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "take <a class="dv-oid" href="#1c">1c</a> as the TV mode and <a class="dv-oid" href="#1b">1b</a> for the desk" · "<a class="dv-oid" href="#1d">1d</a> with screenshots and Recent updates" · "show the Settings dialog and the right-click menu"</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showBackdrop&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Library&quot;},&quot;spotlightGame&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;The First Berserker Khazan&quot;,&quot;options&quot;:[&quot;The First Berserker Khazan&quot;,&quot;Silent Hill 2&quot;,&quot;PRAGMATA&quot;,&quot;Marvel's Spider-Man 2&quot;,&quot;The Blood of Dawnwalker&quot;,&quot;Crimson Desert Enhanced&quot;,&quot;SILENT HILL f&quot;,&quot;SnowRunner&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Spotlight (1c)&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const G = [
+      ["Silent Hill 2","2124490","41 h 12 m",{fav:1,status:"Playing",last:"Yesterday",size:"49.6 GB"}],
+      ["PRAGMATA","3357650","6 h 05 m",{isNew:1,last:"3 days ago",size:"62.1 GB"}],
+      ["The First Berserker Khazan","2680010","18 h 03 m",{last:"Last week",size:"71.4 GB",status:"Playing"}],
+      ["Marvel's Spider-Man 2","2651280","22 h 40 m",{status:"Finished",last:"2 weeks ago",size:"148 GB"}],
+      ["The Blood of Dawnwalker","3751260","3 h 20 m",{isNew:1,last:"Today",size:"88.3 GB"}],
+      ["Crimson Desert Enhanced","3321460","Steam",{last:"4 days ago",size:"132 GB"}],
+      ["LEGO Batman: Legacy of the Dark Knight","2215200","9 h 51 m",{last:"Last month",size:"54.0 GB"}],
+      ["SILENT HILL f","2947440","14 h 30 m",{status:"Finished",last:"Last month",size:"51.2 GB"}],
+      ["SnowRunner","1465360","57 h 18 m",{fav:1,last:"4 months ago",size:"46.8 GB"}],
+      ["CULTIC","1684930","2 h 47 m",{status:"Dropped",last:"5 months ago",size:"4.1 GB"}],
+      ["Slow Roads","3431300","1 h 15 m",{last:"2 months ago",size:"0.6 GB"}],
+      ["Left 4 Dead 2","550","Steam",{last:"7 months ago",size:"14.9 GB"}],
+      ["Worship","1548180","40 m",{last:"6 months ago",size:"9.2 GB"}],
+      ["Cinderia","3214610","Not played yet",{}],
+      ["Overwatch","2357570","Steam",{}],
+      ["Aimlabs","714010","Steam",{}],
+      ["CONTROL Resonant","3669870","Not played yet",{isNew:1}],
+      ["SILENT HILL Townfall","1636440","Not played yet",{}],
+      ["Star Wars Episode I - Racer","808910","GOG",{}],
+      ["Minecraft Dungeons II","1912410","Xbox",{}],
+      ["Rehaunted","4538140","1 h 02 m",{}],
+    ].map(([name,id,sub,x],i)=>({name,id,sub,cover:`art/${id}.jpg`,hero:`art/${id}_hero.jpg`,fav:!!x.fav,isNew:!!x.isNew,status:x.status||"",last:x.last||"",size:x.size||"",
+      ring:i===4?"0 0 0 2px var(--color-accent), 0 0 24px color-mix(in srgb, var(--color-accent) 45%, transparent)":"var(--shadow-sm)"}));
+    const spotName = this.props.spotlightGame ?? "The First Berserker Khazan";
+    const si = Math.max(0, G.findIndex(g=>g.name===spotName));
+    const sg = G[si];
+    const spot = {...sg, status: sg.status||"In library", store: /Steam|GOG|Xbox/.test(sg.sub)?sg.sub:"Folder game", played: /h|m$/.test(sg.sub)?sg.sub+" played":"Time kept by "+sg.sub, last: sg.last||"Not played yet", size: sg.size||"—"};
+    const order = [...G.slice(si), ...G.slice(0, si)].slice(0, 11);
+    const strip = order.map((g,i)=>({cover:g.cover,w:i===0?"128px":"104px",op:i===0?1:(i<7?.85:.5),ring:i===0?"0 0 0 3px var(--color-accent-200), 0 0 0 6px color-mix(in srgb, var(--color-accent) 40%, transparent), 0 0 40px color-mix(in srgb, var(--color-accent) 50%, transparent)":"var(--shadow-sm)"}));
+    const chipDefs=[["All games",21,1],["Favorites",2],["Playing",2],["Finished",2],["Dropped",1]];
+    const chips=chipDefs.map(([label,count,on])=>({label,count,border:on?"var(--color-accent)":"var(--color-divider)",color:on?"var(--color-accent-200)":"var(--color-neutral-300)"}));
+    const icons={"All games":"ph-squares-four","Favorites":"ph-star","Playing":"ph-play-circle","Finished":"ph-check-circle","Dropped":"ph-x-circle"};
+    const railFilters=chipDefs.map(([label,count,on])=>({label,count,icon:icons[label],color:on?"var(--color-text)":"var(--color-neutral-300)",bg:on?"color-mix(in srgb, var(--color-text) 6%, transparent)":"transparent"}));
+    const sources=[["Folders",13],["Steam",5],["Xbox",2],["GOG",1]].map(([label,count])=>({label,count}));
+    const recent=[G[0],G[4],G[1]].map((g,i)=>({name:g.name,hero:g.hero,meta:`${g.sub} · ${g.last.toLowerCase()}`,ring:i===0?"0 0 0 1px var(--color-accent-600)":"var(--shadow-sm)"}));
+    const gamesAz=[...G].sort((a,b)=>a.name.localeCompare(b.name)).slice(0,14);
+    const pills=[["ph-clock","41 h 12 m played"],["ph-calendar-blank","Last played yesterday"],["ph-hard-drive","49.6 GB installed"],["ph-floppy-disk","Saves copied today"],["ph-game-controller","Full controller support"]]
+      .map(([icon,label])=>({icon,label,color:label.startsWith("Saves")?"var(--color-accent-200)":"var(--color-neutral-200)"}));
+    const S=[["Yesterday",142],["Mon 5 Oct",88],["Sat 3 Oct",201],["Fri 2 Oct",34],["Tue 29 Sep",117],["Sun 27 Sep",156]];
+    const mx=201;
+    const sessions=S.map(([day,m])=>({day,w:Math.max(3,Math.round(m/mx*100))+"%",len:`${Math.floor(m/60)} h ${String(m%60).padStart(2,"0")} m`}));
+    const figures=[["ph-clock","186 h","Played in all, timed here"],["ph-game-controller","14","Games played this year"],["ph-list-checks","312","Sessions recorded"],["ph-timer","6 h 41 m","Longest session — SnowRunner"]].map(([icon,value,label])=>({icon,value,label}));
+    const MV=[["Nov",0,1],["Dec",0,1],["Jan",11],["Feb",19],["Mar",8],["Apr",24],["May",31],["Jun",14],["Jul",22],["Aug",17],["Sep",29],["Oct",12]];
+    const months=MV.map(([label,v,un])=>({label,v:un?"":v+" h",h:un?"6px":Math.round(v/31*120)+"px",fill:un?"var(--color-neutral-800)":"linear-gradient(180deg, var(--color-accent), var(--color-accent-700))"}));
+    const topGames=[G[8],G[0],G[3],G[2],G[7]].map(g=>({name:g.name,cover:g.cover,time:g.sub}));
+    const ST=[["Marvel's Spider-Man 2",148,"2 weeks ago"],["Crimson Desert Enhanced",132,"4 days ago"],["The Blood of Dawnwalker",88.3,"Today"],["The First Berserker Khazan",71.4,"Last week"],["PRAGMATA",62.1,"3 days ago"],["LEGO Batman: Legacy of the Dark Knight",54,"Last month"],["SILENT HILL f",51.2,"Last month"],["Silent Hill 2",49.6,"Yesterday"],["SnowRunner",46.8,"4 months ago",1],["Left 4 Dead 2",14.9,"7 months ago",1],["Worship",9.2,"6 months ago",1]];
+    const storage=ST.map(([name,gb,last,stale])=>({name,last,stale:!!stale,size:gb>=100?Math.round(gb)+" GB":gb.toFixed(1)+" GB",w:Math.max(1,Math.round(gb/148*100))+"%",fill:stale?"color-mix(in srgb, var(--color-accent-400) 22%, transparent)":"color-mix(in srgb, var(--color-accent) 16%, transparent)"}));
+    const hints=[["A","Play"],["X","Menu"],["Y","Play something"],["B","Back"],["≡","Settings"]].map(([k,label])=>({k,label}));
+    return {games:G.slice(0,16),chips,railFilters,sources,recent,gamesAz,spot,strip,pills,sessions,figures,months,topGames,storage,hints,showBackdrop:this.props.showBackdrop ?? true};
+  }
+}
+</script>
+</body>
+</html>

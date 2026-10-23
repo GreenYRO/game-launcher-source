@@ -1,0 +1,9 @@
+{
+ "url": "https://api.github.com/repos/rsms/inter/releases/latest",
+ "at": "2026-10-11T23:18:12+03:00",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 5505,
+ "rate_limit": "60",
+ "rate_remaining": "59"
+}

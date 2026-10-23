@@ -1,0 +1,8 @@
+# Verified working on CPython 3.14.5 / Windows 11, 2026-08-11.
+# PySide6 ships as cp310-abi3, so it installs on any 3.10+ — the 3.14 run was
+# confirmed functionally (windows platform plugin + QFileIconProvider), not just by import.
+pefile==2024.8.26
+PySide6==6.11.1
+pywin32==312
+vdf==3.4
+pygame-ce==2.5.8

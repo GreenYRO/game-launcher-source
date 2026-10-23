@@ -1,0 +1,11 @@
+# Line endings: git decides text from binary itself; every text file is LF in the repository (Phase 91).
+* text=auto
+
+# The public repository, GreenYRO/game-launcher-source, is `git archive` of one commit of this one,
+# made by packaging/export_public.py: what carries export-ignore is left out of it, and only that --
+# Claude Code's working files, the explanations written for the author, and the publishers' artwork
+# the mockups were made with. The author's data never needs a line here: data/ is not committed.
+.claude export-ignore
+CLAUDE.md export-ignore
+docs/explicatii export-ignore
+docs/design/nocturne-handoff/art export-ignore

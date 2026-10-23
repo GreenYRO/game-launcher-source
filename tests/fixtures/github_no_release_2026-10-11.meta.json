@@ -1,0 +1,9 @@
+{
+ "url": "https://api.github.com/repos/GreenYRO/game-launcher-releases/releases/latest",
+ "at": "2026-10-11T23:18:13+03:00",
+ "status": 404,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 130,
+ "rate_limit": "60",
+ "rate_remaining": "58"
+}

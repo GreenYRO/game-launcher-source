@@ -1,0 +1,8 @@
+{
+ "url": "https://api.steampowered.com/IWishlistService/GetWishlist/v1/?steamid=<an account marked mine>",
+ "at": "2026-10-15T10:24:00+03:00",
+ "status": 200,
+ "content_type": "application/json; charset=UTF-8",
+ "bytes": 898,
+ "note": "one of four requests, one per account marked mine; the one public list (16 items). The Steam number is not kept here."
+}

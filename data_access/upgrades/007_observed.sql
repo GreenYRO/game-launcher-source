@@ -1,0 +1,15 @@
+-- Game Launcher: schema version 6 -> 7 (Phase 93), observed sessions: a game the launcher saw
+-- running -- started from Steam, from Epic, from Xbox or from its own shortcut -- has sessions too.
+-- Additive only: one column on session; nothing in the earlier versions changes, and every row
+-- already there was timed by the launcher, so it reads 'launched'.
+-- docs/BAZA_DE_DATE.md section 5 (Versiunea 7) explains it; schema.sql holds the same column.
+--
+-- origin says how a session was measured:
+--   * 'launched' -- the launcher started the game and timed it in its Job Object (Phase 16), to the
+--     second;
+--   * 'observed' -- the launcher saw the game's processes in the process list every few seconds
+--     (logic/observe.py), whoever started it: each edge of the session is uncertain by one look.
+-- The no-double-count rule (BAZA_DE_DATE): an observed session of a Steam game is kept for its
+-- shape -- when, how long -- and never adds to playtime_seconds, because Steam's own counter
+-- (v_hours.minutes_steam) already holds those hours.
+ALTER TABLE session ADD COLUMN origin TEXT NOT NULL DEFAULT 'launched' CHECK (origin IN ('launched', 'observed'));

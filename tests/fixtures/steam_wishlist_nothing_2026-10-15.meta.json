@@ -1,0 +1,8 @@
+{
+ "url": "https://api.steampowered.com/IWishlistService/GetWishlist/v1/?steamid=<an account marked mine>",
+ "at": "2026-10-15T10:24:00+03:00",
+ "status": 200,
+ "content_type": "application/json; charset=UTF-8",
+ "bytes": 15,
+ "note": "the answer of the other three accounts, byte for byte the same; one of them is signed in to the client and its store page shows 'Wishlist 6', so a private list answers this -- as an empty one would."
+}

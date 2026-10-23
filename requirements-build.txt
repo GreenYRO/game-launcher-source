@@ -1,0 +1,8 @@
+# Only needed to build the installer, never to run the launcher.
+#
+#   "C:\Users\andre\Claude New\.venv\Scripts\python.exe" -m pip install -r requirements-build.txt
+#   "C:\Users\andre\Claude New\.venv\Scripts\python.exe" packaging\build.py
+#
+# 6.22.0 is the first release that lists Python 3.14 as supported, which matters because
+# 3.14.5 is the only interpreter on this machine.
+pyinstaller==6.22.0

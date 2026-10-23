@@ -1,0 +1,63 @@
+# Restore-point repository: source and settings only.
+# Everything below is either huge, regenerated automatically, or both.
+
+.venv/
+cache/
+backups/
+catalog.json
+__pycache__/
+*.pyc
+*.tmp
+
+# Packaging output. build/ is intermediate, dist/ holds the 65 MB installer; both are
+# rebuilt from source by packaging/build.py and neither belongs in a restore-point repo.
+build/
+dist/
+
+# The launcher's own log (Phase 26), rotated: launcher.log, launcher.log.1, launcher.log.2.
+launcher.log*
+
+# Copies of games' saves (Phase 29): the user's own data, rotated, and far too big for a
+# restore-point repository.
+save_backups/
+
+# What the safety nets measured on this machine (Phase 39): the library the scanner found
+# and a fingerprint of the original launcher folder. Machine-specific, and regenerated.
+tests/baseline/
+
+# The database prototype (8 October): its report names games as their folders on disk do.
+docs/prototip-bd/report.md
+# The database build.py writes when run as its README shows; rebuilt from data/ any time.
+docs/prototip-bd/*.db
+
+# The library database (Phase 67 on): the user's own data, like catalog.json never
+# committed -- backups/ protects it -- and its rollback journal, there only mid-write.
+library.db
+library.db-journal
+# The JSON the migration moved aside (Phase 69): the user's own records, never committed;
+# and the database while it is built, refused, or being put back from a snapshot.
+migrated/
+library.db.building
+library.db.refused
+library.db.restoring
+# A copy of the library kept as a phase's undo for the data, as its tag is for the code
+# (Phase 93 on: library.before-phase-93.db, before a schema change).
+/data/library.before-*.db
+# The user's own settings and records, no longer tracked (Phase 69, the user's yes): the
+# library lives in data/library.db (ignored above) and backups/ protects it; config.json
+# holds the SteamGridDB key. Their old versions stay in the history -- the repository shown
+# to the committee is a fresh export (docs/BAZA_DE_DATE.md, section 17).
+/data/config.json
+/data/overrides.json
+
+# The Windows Sandbox file (Phase 78) names absolute paths on this PC; make_sandbox.py writes it.
+packaging/sandbox/*.wsb
+
+# Friends' anonymous exports and the comparison made from them (Phase 81): their data, never
+# committed, even anonymous.
+/data/exports/
+
+# Launch videos made with the /brag plugin: renders and their working frames, not source.
+/brag-output*/
+# A copy of brag-output/brag.mp4 kept at the root.
+/brag.mp4

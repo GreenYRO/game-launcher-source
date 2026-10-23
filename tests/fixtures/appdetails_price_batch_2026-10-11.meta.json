@@ -1,0 +1,7 @@
+{
+ "url": "https://store.steampowered.com/api/appdetails?appids=730,550,1&filters=price_overview&cc=RO&l=english",
+ "at": "2026-10-11T17:41:41+03:00",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 222
+}
